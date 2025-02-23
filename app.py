@@ -5,11 +5,6 @@ from services.ticketService import buy_ticket, get_ticket
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello_world():  # put application's code here
-    return 'Hello World!'
-
-
 @app.route("/purchase/",methods=['POST'])
 def purchase_ticket():
     data = request.get_json()

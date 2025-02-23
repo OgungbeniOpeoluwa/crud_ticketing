@@ -7,12 +7,12 @@ from starlette.datastructures import UploadFile
 
 conf = ConnectionConfig(
     MAIL_USERNAME=os.environ.get("MAIL_USERNAME"),
-    MAIL_PASSWORD=os.environ.get("MAIL_PASSWORD"),  # Use an App Password (not your regular password)
+    MAIL_PASSWORD=os.environ.get("MAIL_PASSWORD"),
     MAIL_FROM= os.environ.get("MAIL_USERNAME"),
     MAIL_PORT=587,
     MAIL_SERVER="smtp.gmail.com",
-    MAIL_STARTTLS=True,   # Replaces MAIL_TLS
-    MAIL_SSL_TLS=False,   # Replaces MAIL_SSL
+    MAIL_STARTTLS=True,
+    MAIL_SSL_TLS=False,
     USE_CREDENTIALS=True
 )
 
@@ -28,7 +28,7 @@ async def send_qr_email(to_email: str, qr_code_base64: str):
         recipients=[to_email],
         body="<h3>Your Ticket</h3><p>Thank you for purchasing a ticket! The QR code is attached.</p>",
         subtype="html",
-        attachments=[qr_upload_file],  # ✅ Use UploadFile instead of tuple
+        attachments=[qr_upload_file],
     )
 
     fm = FastMail(conf)
